@@ -4,7 +4,7 @@ import (
 	"log"
     "github.com/joho/godotenv"
     "github.com/gin-gonic/gin"
-	equipamentInfra "gym-system/src/inventory/infraestructure/routes"
+		equipamentInfra "gym-system/src/inventory/infraestructure/routes/Equipment"
 )
 
 

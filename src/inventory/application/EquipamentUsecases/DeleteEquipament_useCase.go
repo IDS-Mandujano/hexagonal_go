@@ -1,6 +1,6 @@
 package equipamentusecases
 
-import "gym-system/src/inventory/domain/repositories"
+import "gym-system/src/inventory/domain/repositories/Equipment"
 
 type DeleteEquipment struct {
 	db repositories.IEquipamentRepository

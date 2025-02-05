@@ -3,7 +3,7 @@ package routes
 import (
 	"gym-system/src/inventory/application/EquipamentUsecases"
 	equipamentcontrollers "gym-system/src/inventory/infraestructure/controllers/EquipamentControllers"
-	"gym-system/src/inventory/infraestructure/database"
+	"gym-system/src/inventory/infraestructure/database/Equipment"
 
 	"github.com/gin-gonic/gin"
 )
