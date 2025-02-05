@@ -5,6 +5,7 @@ import (
     "github.com/joho/godotenv"
     "github.com/gin-gonic/gin"
 		equipamentInfra "gym-system/src/inventory/infraestructure/routes/Equipment"
+		machineInfra "gym-system/src/inventory/infraestructure/routes/Machine"
 )
 
 
@@ -17,6 +18,7 @@ func main () {
 	r := gin.Default()
 
 	equipamentInfra.SetupRoutesEquipament(r)
+	machineInfra.SetupRoutesMachine(r)
 
 	if err := r.Run(":8080"); err != nil {
 		log.Fatalf("Error al iniciar el servidor: %v",err)

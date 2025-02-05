@@ -1,4 +1,4 @@
-package routes
+package equipment
 
 import (
 	"gym-system/src/inventory/application/EquipamentUsecases"
@@ -10,7 +10,7 @@ import (
 
 func SetupRoutesEquipament(r *gin.Engine){
 
-	dbInstance := database.NewMySQLEquipament()
+	dbInstance := equipment.NewMySQLEquipament()
 
 	listEquipamentController := equipamentcontrollers.NewListEquipmentController(*equipamentusecases.NewListEquipment(dbInstance))
 	createEquipamentController := equipamentcontrollers.NewCreateEquipamentController(*equipamentusecases.NewCreateEquipament(dbInstance))
