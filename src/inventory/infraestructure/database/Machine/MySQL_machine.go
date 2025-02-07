@@ -91,6 +91,27 @@ func (mysql *MySQLMachine) GetById(id int) ([]map[string]interface{}, error) {
 	return machines, nil
 }
 
+func (mysql *MySQLMachine) GetStatus(id int) (string, error) {
+	query := "SELECT cstatus FROM machines WHERE id = ?"
+	rows := mysql.conn.FetchRows(query, id)
+	if rows == nil {
+		return "", fmt.Errorf("no se pudo ejecutar la consulta o no hay resultados")
+	}
+	defer rows.Close()
+
+	var status string
+	if rows.Next() {
+		if err := rows.Scan(&status); err != nil {
+			return "", err
+		}
+	}
+
+	if err := rows.Err(); err != nil {
+		return "", err
+	}
+
+	return status, nil
+}
 
 func (mysql *MySQLMachine) Update(id int, cname string, ctype string, cstatus string) {
 	query := "UPDATE machines SET cname = ?, ctype = ?, cstatus = ? WHERE id = ?"
