@@ -4,6 +4,7 @@ import (
 	"log"
     "github.com/joho/godotenv"
     "github.com/gin-gonic/gin"
+	"github.com/gin-contrib/cors"
 		equipamentInfra "gym-system/src/inventory/infraestructure/routes/Equipment"
 		machineInfra "gym-system/src/inventory/infraestructure/routes/Machine"
 )
@@ -16,6 +17,13 @@ func main () {
 	}
 
 	r := gin.Default()
+
+	r.Use(cors.New(cors.Config{
+        AllowOrigins:     []string{"*"},
+        AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+        AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
+        AllowCredentials: true,
+    }))
 
 	equipamentInfra.SetupRoutesEquipament(r)
 	machineInfra.SetupRoutesMachine(r)
