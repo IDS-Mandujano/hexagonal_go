@@ -91,6 +91,34 @@ func (mysql *MySQLEquipament) GetById(id int) ([]map[string]interface{}, error) 
 	return equipaments, nil
 }
 
+func (mysql *MySQLEquipament) GetCondition(condition string) ([]map[string]interface{}, error){
+	query := "SELECT * FROM equipments WHERE ccondition = ?"
+	rows := mysql.conn.FetchRows(query, condition)
+	defer rows.Close()
+
+	var equipments []map[string]interface{}
+	for rows.Next() {
+		var id int
+		var cname, category, ccondition string
+		if err := rows.Scan(&id, &cname, &category, &ccondition); err != nil {
+			return nil, err
+		}
+		equipment := map[string]interface{}{
+			"id": id,
+			"cname" :  cname,
+			"category" : category,
+			"ccondition" : ccondition,
+		}
+		equipments = append(equipments, equipment)
+	}
+
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+
+	return equipments, nil
+}
+
 
 func (mysql *MySQLEquipament) Update(id int, cname string, category string, ccondition string) {
 	query := "UPDATE equipments SET cname = ?, category = ?, ccondition = ? WHERE id = ?"

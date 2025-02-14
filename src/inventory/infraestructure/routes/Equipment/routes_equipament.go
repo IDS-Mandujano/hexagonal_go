@@ -15,12 +15,14 @@ func SetupRoutesEquipament(r *gin.Engine){
 	listEquipamentController := equipamentcontrollers.NewListEquipmentController(*equipamentusecases.NewListEquipment(dbInstance))
 	createEquipamentController := equipamentcontrollers.NewCreateEquipamentController(*equipamentusecases.NewCreateEquipament(dbInstance))
 	getEquipmentById := equipamentcontrollers.NewEquipmentByIdController(*equipamentusecases.NewEquipmentById(dbInstance))
+	getEquipmentCondition := equipamentcontrollers.NewEquipmentCondition(equipamentusecases.NewEquipmentByCondition(dbInstance))
 	updateEquipment := equipamentcontrollers.NewUpdateEquipmentController(*equipamentusecases.NewUpdateEquipment(dbInstance))
 	deleteEquipment := equipamentcontrollers.NewDeleteEquipment(*equipamentusecases.NewDeleteEquipment(dbInstance))
 
 	r.GET("/equipments",listEquipamentController.Execute)
 	r.POST("/equipments",createEquipamentController.Execute)
 	r.GET("/equipments/:id",getEquipmentById.Execute)
+	r.GET("equipments/condition/:condition",getEquipmentCondition.Execute)
 	r.PUT("/equipments/:id",updateEquipment.Execute)
 	r.DELETE("/equipments/:id",deleteEquipment.Execute)
 
