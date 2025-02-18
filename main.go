@@ -5,8 +5,8 @@ import (
     "github.com/joho/godotenv"
     "github.com/gin-gonic/gin"
 	"github.com/gin-contrib/cors"
-		equipamentInfra "gym-system/src/inventory/infraestructure/routes/Equipment"
-		machineInfra "gym-system/src/inventory/infraestructure/routes/Machine"
+		equipamentInfra "gym-system/src/inventory/Equipments/infraestructure/routes"
+		machineInfra "gym-system/src/inventory/Machines/infraestructure/routes"
 )
 
 
